@@ -42,23 +42,23 @@ export default function Header() {
 
     return (
         <header>
-            <nav className="nav-tabs nav-tabs-lg">
-                <FileMenu/>
-                {entries.map(Entry => (
-                    <a key={Entry.title}
-                       href="#"
-                       className={classnames({active: Entry === ActiveMenu})}
-                       onClick={e => handleClick(Entry, e)}>
-                        {Entry.title}
-                    </a>
-                ))}
-                <HideInStatic>
-                    <ConnectionIndicator/>
-                </HideInStatic>
-            </nav>
-            <div>
-                <ActiveMenu/>
-            </div>
+            {/*<nav className="nav-tabs nav-tabs-lg">*/}
+            {/*    <FileMenu/>*/}
+            {/*    {entries.map(Entry => (*/}
+            {/*        <a key={Entry.title}*/}
+            {/*           href="#"*/}
+            {/*           className={classnames({active: Entry === ActiveMenu})}*/}
+            {/*           onClick={e => handleClick(Entry, e)}>*/}
+            {/*            {Entry.title}*/}
+            {/*        </a>*/}
+            {/*    ))}*/}
+            {/*    <HideInStatic>*/}
+            {/*        <ConnectionIndicator/>*/}
+            {/*    </HideInStatic>*/}
+            {/*</nav>*/}
+            {/*<div>*/}
+            {/*    <ActiveMenu/>*/}
+            {/*</div>*/}
         </header>
     )
 }
