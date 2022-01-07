@@ -70,17 +70,17 @@ export default function HttpMessage({flow, message}: HttpMessageProps) {
             <div className="contentview" key="view">
                 <div className="controls">
                     <h5>{desc}</h5>
-                    <Button onClick={() => setEdit(true)} icon="fa-edit" className="btn-xs">Edit</Button>
-                    &nbsp;
-                    <FileChooser
-                        icon="fa-upload"
-                        text="Replace"
-                        title="Upload a file to replace the content."
-                        onOpenFile={content => dispatch(uploadContent(flow, content, part))}
-                        className="btn btn-default btn-xs"/>
-                    &nbsp;
-                    <ViewSelector value={contentView}
-                                  onChange={cv => dispatch(setContentViewFor(flow.id + part, cv))}/>
+                    {/*<Button onClick={() => setEdit(true)} icon="fa-edit" className="btn-xs">Edit</Button>*/}
+                    {/*&nbsp;*/}
+                    {/*<FileChooser*/}
+                    {/*    icon="fa-upload"*/}
+                    {/*    text="Replace"*/}
+                    {/*    title="Upload a file to replace the content."*/}
+                    {/*    onOpenFile={content => dispatch(uploadContent(flow, content, part))}*/}
+                    {/*    className="btn btn-default btn-xs"/>*/}
+                    {/*&nbsp;*/}
+                    {/*<ViewSelector value={contentView}*/}
+                    {/*              onChange={cv => dispatch(setContentViewFor(flow.id + part, cv))}/>*/}
                 </div>
                 {ViewImage.matches(message) && <ViewImage flow={flow} message={message}/>}
                 <LineRenderer lines={contentViewData?.lines || []}
