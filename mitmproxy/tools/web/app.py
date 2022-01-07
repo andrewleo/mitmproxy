@@ -189,7 +189,6 @@ class RequestHandler(tornado.web.RequestHandler):
     def set_default_headers(self):
         super().set_default_headers()
         self.set_header("Server", version.MITMPROXY)
-        self.set_header("X-Frame-Options", "DENY")
         self.add_header("X-XSS-Protection", "1; mode=block")
         self.add_header("X-Content-Type-Options", "nosniff")
         self.add_header(
@@ -454,7 +453,6 @@ class FlowContent(RequestHandler):
         self.set_header("Content-Disposition", cd)
         self.set_header("Content-Type", "application/text")
         self.set_header("X-Content-Type-Options", "nosniff")
-        self.set_header("X-Frame-Options", "DENY")
         self.write(message.get_content(strict=False))
 
 
