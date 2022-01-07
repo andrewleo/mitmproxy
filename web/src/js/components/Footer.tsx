@@ -60,9 +60,9 @@ export default function Footer() {
                     </span>)
                     }
                 </HideInStatic>
-                <span className="label label-default" title="Mitmproxy Version">
-            mitmproxy {version}
-            </span>
+            {/*    <span className="label label-default" title="Mitmproxy Version">*/}
+            {/*mitmproxy {version}*/}
+            {/*</span>*/}
             </div>
         </footer>
     )
