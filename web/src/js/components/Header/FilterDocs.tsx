@@ -49,14 +49,14 @@ export default class FilterDocs extends Component<FilterDocsProps, FilterDocsSta
                             <td>{cmd[1]}</td>
                         </tr>
                     ))}
-                    <tr key="docs-link">
-                        <td colSpan={2}>
-                            <a href="https://mitmproxy.org/docs/latest/concepts-filters/"
-                                target="_blank">
-                                <i className="fa fa-external-link"/>
-                            &nbsp; mitmproxy docs</a>
-                        </td>
-                    </tr>
+                    {/*<tr key="docs-link">*/}
+                    {/*    <td colSpan={2}>*/}
+                    {/*        <a href="https://mitmproxy.org/docs/latest/concepts-filters/"*/}
+                    {/*            target="_blank">*/}
+                    {/*            <i className="fa fa-external-link"/>*/}
+                    {/*        &nbsp; mitmproxy docs</a>*/}
+                    {/*    </td>*/}
+                    {/*</tr>*/}
                 </tbody>
             </table>
         )

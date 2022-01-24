@@ -577,7 +577,7 @@
             }
             return element;
           }, "ReactElement");
-          function createElement26(type, config, children) {
+          function createElement24(type, config, children) {
             var propName;
             var props = {};
             var key = null;
@@ -638,7 +638,7 @@
             }
             return ReactElement2(type, key, ref, self2, source, ReactCurrentOwner.current, props);
           }
-          __name(createElement26, "createElement");
+          __name(createElement24, "createElement");
           function cloneAndReplaceKey(oldElement, newKey) {
             var newElement = ReactElement2(oldElement.type, newKey, oldElement.ref, oldElement._self, oldElement._source, oldElement._owner, oldElement.props);
             return newElement;
@@ -1086,7 +1086,7 @@
             return false;
           }
           __name(isValidElementType2, "isValidElementType");
-          function memo3(type, compare) {
+          function memo4(type, compare) {
             {
               if (!isValidElementType2(type)) {
                 error("memo: The first argument must be a component. Instead received: %s", type === null ? "null" : typeof type);
@@ -1115,7 +1115,7 @@
             }
             return elementType;
           }
-          __name(memo3, "memo");
+          __name(memo4, "memo");
           function resolveDispatcher() {
             var dispatcher = ReactCurrentDispatcher.current;
             if (!(dispatcher !== null)) {
@@ -1674,7 +1674,7 @@
                 error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
               }
             }
-            var element = createElement26.apply(this, arguments);
+            var element = createElement24.apply(this, arguments);
             if (element == null) {
               return element;
             }
@@ -1753,7 +1753,7 @@
           exports.forwardRef = forwardRef;
           exports.isValidElement = isValidElement;
           exports.lazy = lazy;
-          exports.memo = memo3;
+          exports.memo = memo4;
           exports.useCallback = useCallback4;
           exports.useContext = useContext5;
           exports.useDebugValue = useDebugValue2;
@@ -2605,11 +2605,11 @@
       if (true) {
         (function() {
           "use strict";
-          var React52 = require_react();
+          var React50 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React52.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React50.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn(format2) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2644,7 +2644,7 @@
             }
           }
           __name(printWarning, "printWarning");
-          if (!React52) {
+          if (!React50) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -3913,7 +3913,7 @@
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React52.Children.forEach(children, function(child) {
+            React50.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -3925,7 +3925,7 @@
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React52.Children.forEach(props.children, function(child) {
+                React50.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -8915,7 +8915,7 @@
             }
           }
           __name(updateDOMProperties, "updateDOMProperties");
-          function createElement26(type, props, rootContainerElement, parentNamespace) {
+          function createElement24(type, props, rootContainerElement, parentNamespace) {
             var isCustomComponentTag;
             var ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
             var domElement;
@@ -8963,7 +8963,7 @@
             }
             return domElement;
           }
-          __name(createElement26, "createElement");
+          __name(createElement24, "createElement");
           function createTextNode(text, rootContainerElement) {
             return getOwnerDocumentFromRootContainer(rootContainerElement).createTextNode(text);
           }
@@ -9812,7 +9812,7 @@
               }
               parentNamespace = hostContextDev.namespace;
             }
-            var domElement = createElement26(type, props, rootContainerInstance, parentNamespace);
+            var domElement = createElement24(type, props, rootContainerInstance, parentNamespace);
             precacheFiberNode(internalInstanceHandle, domElement);
             updateFiberProps(domElement, props);
             return domElement;
@@ -11483,7 +11483,7 @@
           __name(commitUpdateQueue, "commitUpdateQueue");
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React52.Component().refs;
+          var emptyRefsObject = new React50.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -39698,7 +39698,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // src/js/app.tsx
-  var React51 = __toModule(require_react());
+  var React49 = __toModule(require_react());
   var import_react_dom7 = __toModule(require_react_dom());
 
   // node_modules/react-redux/es/components/Provider.js
@@ -43730,10 +43730,6 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }
   }
   __name(reducer3, "reducer");
-  function setActiveModal(activeModal) {
-    return { type: SET_ACTIVE_MODAL, activeModal };
-  }
-  __name(setActiveModal, "setActiveModal");
   function hideModal() {
     return { type: HIDE_MODAL };
   }
@@ -47756,16 +47752,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }, /* @__PURE__ */ import_react21.default.createElement("tbody", null, doc.commands.map((cmd) => /* @__PURE__ */ import_react21.default.createElement("tr", {
         key: cmd[1],
         onClick: (e) => this.props.selectHandler(cmd[0].split(" ")[0] + " ")
-      }, /* @__PURE__ */ import_react21.default.createElement("td", null, cmd[0].replace(" ", "\xA0")), /* @__PURE__ */ import_react21.default.createElement("td", null, cmd[1]))), /* @__PURE__ */ import_react21.default.createElement("tr", {
-        key: "docs-link"
-      }, /* @__PURE__ */ import_react21.default.createElement("td", {
-        colSpan: 2
-      }, /* @__PURE__ */ import_react21.default.createElement("a", {
-        href: "https://mitmproxy.org/docs/latest/concepts-filters/",
-        target: "_blank"
-      }, /* @__PURE__ */ import_react21.default.createElement("i", {
-        className: "fa fa-external-link"
-      }), "\xA0 mitmproxy docs")))));
+      }, /* @__PURE__ */ import_react21.default.createElement("td", null, cmd[0].replace(" ", "\xA0")), /* @__PURE__ */ import_react21.default.createElement("td", null, cmd[1])))));
     }
   };
   __name(FilterDocs, "FilterDocs");
@@ -47880,34 +47867,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   // src/js/components/Header/StartMenu.tsx
   StartMenu.title = "Start";
   function StartMenu() {
-    return /* @__PURE__ */ React33.createElement("div", {
-      className: "main-menu"
-    }, /* @__PURE__ */ React33.createElement("div", {
-      className: "menu-group"
-    }, /* @__PURE__ */ React33.createElement("div", {
-      className: "menu-content"
-    }, /* @__PURE__ */ React33.createElement(FlowFilterInput, null), /* @__PURE__ */ React33.createElement(HighlightInput, null)), /* @__PURE__ */ React33.createElement("div", {
-      className: "menu-legend"
-    }, "Find")), /* @__PURE__ */ React33.createElement("div", {
-      className: "menu-group"
-    }, /* @__PURE__ */ React33.createElement("div", {
-      className: "menu-content"
-    }, /* @__PURE__ */ React33.createElement(InterceptInput, null), /* @__PURE__ */ React33.createElement(ResumeAll, null)), /* @__PURE__ */ React33.createElement("div", {
-      className: "menu-legend"
-    }, "Intercept")));
+    return /* @__PURE__ */ React33.createElement(FlowFilterInput, null);
   }
   __name(StartMenu, "StartMenu");
-  function InterceptInput() {
-    const dispatch = useAppDispatch(), value = useAppSelector((state) => state.options.intercept);
-    return /* @__PURE__ */ React33.createElement(FilterInput, {
-      value: value || "",
-      placeholder: "Intercept",
-      type: "pause",
-      color: "hsl(208, 56%, 53%)",
-      onChange: (val) => dispatch(update3("intercept", val))
-    });
-  }
-  __name(InterceptInput, "InterceptInput");
   function FlowFilterInput() {
     const dispatch = useAppDispatch(), value = useAppSelector((state) => state.flows.filter);
     return /* @__PURE__ */ React33.createElement(FilterInput, {
@@ -47919,129 +47881,16 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     });
   }
   __name(FlowFilterInput, "FlowFilterInput");
-  function HighlightInput() {
-    const dispatch = useAppDispatch(), value = useAppSelector((state) => state.flows.highlight);
-    return /* @__PURE__ */ React33.createElement(FilterInput, {
-      value: value || "",
-      placeholder: "Highlight",
-      type: "tag",
-      color: "hsl(48, 100%, 50%)",
-      onChange: (value2) => dispatch(setHighlight(value2))
-    });
-  }
-  __name(HighlightInput, "HighlightInput");
-  function ResumeAll() {
-    const dispatch = useAppDispatch();
-    return /* @__PURE__ */ React33.createElement(Button, {
-      className: "btn-sm",
-      title: "[a]ccept all",
-      icon: "fa-forward text-success",
-      onClick: () => dispatch(resumeAll())
-    }, "Resume All");
-  }
-  __name(ResumeAll, "ResumeAll");
-
-  // src/js/components/Header/OptionMenu.tsx
-  var React37 = __toModule(require_react());
-
-  // src/js/components/Header/MenuToggle.tsx
-  var React34 = __toModule(require_react());
-  function MenuToggle({ value, onChange, children }) {
-    return /* @__PURE__ */ React34.createElement("div", {
-      className: "menu-entry"
-    }, /* @__PURE__ */ React34.createElement("label", null, /* @__PURE__ */ React34.createElement("input", {
-      type: "checkbox",
-      checked: value,
-      onChange
-    }), children));
-  }
-  __name(MenuToggle, "MenuToggle");
-  function OptionsToggle({ name, children }) {
-    const dispatch = useAppDispatch(), value = useAppSelector((state) => state.options[name]);
-    return /* @__PURE__ */ React34.createElement(MenuToggle, {
-      value: !!value,
-      onChange: () => dispatch(update3(name, !value))
-    }, children);
-  }
-  __name(OptionsToggle, "OptionsToggle");
-  function EventlogToggle() {
-    const dispatch = useDispatch(), visible = useAppSelector((state) => state.eventLog.visible);
-    return /* @__PURE__ */ React34.createElement(MenuToggle, {
-      value: visible,
-      onChange: () => dispatch(toggleVisibility())
-    }, "Display Event Log");
-  }
-  __name(EventlogToggle, "EventlogToggle");
-  function CommandBarToggle() {
-    const dispatch = useDispatch(), visible = useAppSelector((state) => state.commandBar.visible);
-    return /* @__PURE__ */ React34.createElement(MenuToggle, {
-      value: visible,
-      onChange: () => dispatch(toggleVisibility2())
-    }, "Display Command Bar");
-  }
-  __name(CommandBarToggle, "CommandBarToggle");
-
-  // src/js/components/common/DocsLink.tsx
-  var React35 = __toModule(require_react());
-  function DocsLink({ children, resource }) {
-    let url = `https://docs.mitmproxy.org/stable/${resource}`;
-    return /* @__PURE__ */ React35.createElement("a", {
-      target: "_blank",
-      href: url
-    }, children || /* @__PURE__ */ React35.createElement("i", {
-      className: "fa fa-question-circle"
-    }));
-  }
-  __name(DocsLink, "DocsLink");
-
-  // src/js/components/common/HideInStatic.tsx
-  var React36 = __toModule(require_react());
-  function HideInStatic({ children }) {
-    return window.MITMWEB_CONF && window.MITMWEB_CONF.static ? null : /* @__PURE__ */ React36.createElement(React36.Fragment, null, children);
-  }
-  __name(HideInStatic, "HideInStatic");
-
-  // src/js/components/Header/OptionMenu.tsx
-  OptionMenu.title = "Options";
-  function OptionMenu() {
-    const dispatch = useAppDispatch();
-    const openOptions = /* @__PURE__ */ __name(() => setActiveModal("OptionModal"), "openOptions");
-    return /* @__PURE__ */ React37.createElement("div", null, /* @__PURE__ */ React37.createElement(HideInStatic, null, /* @__PURE__ */ React37.createElement("div", {
-      className: "menu-group"
-    }, /* @__PURE__ */ React37.createElement("div", {
-      className: "menu-content"
-    }, /* @__PURE__ */ React37.createElement(Button, {
-      title: "Open Options",
-      icon: "fa-cogs text-primary",
-      onClick: () => dispatch(openOptions())
-    }, "Edit Options ", /* @__PURE__ */ React37.createElement("sup", null, "alpha"))), /* @__PURE__ */ React37.createElement("div", {
-      className: "menu-legend"
-    }, "Options Editor")), /* @__PURE__ */ React37.createElement("div", {
-      className: "menu-group"
-    }, /* @__PURE__ */ React37.createElement("div", {
-      className: "menu-content"
-    }, /* @__PURE__ */ React37.createElement(OptionsToggle, {
-      name: "anticache"
-    }, "Strip cache headers ", /* @__PURE__ */ React37.createElement(DocsLink, {
-      resource: "overview-features/#anticache"
-    })), /* @__PURE__ */ React37.createElement(OptionsToggle, {
-      name: "showhost"
-    }, "Use host header for display"), /* @__PURE__ */ React37.createElement(OptionsToggle, {
-      name: "ssl_insecure"
-    }, "Don't verify server certificates")), /* @__PURE__ */ React37.createElement("div", {
-      className: "menu-legend"
-    }, "Quick Options"))), /* @__PURE__ */ React37.createElement("div", {
-      className: "menu-group"
-    }, /* @__PURE__ */ React37.createElement("div", {
-      className: "menu-content"
-    }, /* @__PURE__ */ React37.createElement(EventlogToggle, null), /* @__PURE__ */ React37.createElement(CommandBarToggle, null)), /* @__PURE__ */ React37.createElement("div", {
-      className: "menu-legend"
-    }, "View Options")));
-  }
-  __name(OptionMenu, "OptionMenu");
 
   // src/js/components/Header/FlowMenu.tsx
-  var React38 = __toModule(require_react());
+  var React35 = __toModule(require_react());
+
+  // src/js/components/common/HideInStatic.tsx
+  var React34 = __toModule(require_react());
+  function HideInStatic({ children }) {
+    return window.MITMWEB_CONF && window.MITMWEB_CONF.static ? null : /* @__PURE__ */ React34.createElement(React34.Fragment, null, children);
+  }
+  __name(HideInStatic, "HideInStatic");
 
   // src/js/flow/export.ts
   var copy = /* @__PURE__ */ __name((flow, format2) => __async(void 0, null, function* () {
@@ -48060,60 +47909,60 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   function FlowMenu() {
     const dispatch = useAppDispatch(), flow = useAppSelector((state) => state.flows.byId[state.flows.selected[0]]);
     if (!flow)
-      return /* @__PURE__ */ React38.createElement("div", null);
-    return /* @__PURE__ */ React38.createElement("div", {
+      return /* @__PURE__ */ React35.createElement("div", null);
+    return /* @__PURE__ */ React35.createElement("div", {
       className: "flow-menu"
-    }, /* @__PURE__ */ React38.createElement(HideInStatic, null, /* @__PURE__ */ React38.createElement("div", {
+    }, /* @__PURE__ */ React35.createElement(HideInStatic, null, /* @__PURE__ */ React35.createElement("div", {
       className: "menu-group"
-    }, /* @__PURE__ */ React38.createElement("div", {
+    }, /* @__PURE__ */ React35.createElement("div", {
       className: "menu-content"
-    }, /* @__PURE__ */ React38.createElement(Button, {
+    }, /* @__PURE__ */ React35.createElement(Button, {
       title: "[r]eplay flow",
       icon: "fa-repeat text-primary",
       onClick: () => dispatch(replay(flow)),
       disabled: !canReplay(flow)
-    }, "Replay"), /* @__PURE__ */ React38.createElement(Button, {
+    }, "Replay"), /* @__PURE__ */ React35.createElement(Button, {
       title: "[D]uplicate flow",
       icon: "fa-copy text-info",
       onClick: () => dispatch(duplicate(flow))
-    }, "Duplicate"), /* @__PURE__ */ React38.createElement(Button, {
+    }, "Duplicate"), /* @__PURE__ */ React35.createElement(Button, {
       disabled: !flow || !flow.modified,
       title: "revert changes to flow [V]",
       icon: "fa-history text-warning",
       onClick: () => dispatch(revert(flow))
-    }, "Revert"), /* @__PURE__ */ React38.createElement(Button, {
+    }, "Revert"), /* @__PURE__ */ React35.createElement(Button, {
       title: "[d]elete flow",
       icon: "fa-trash text-danger",
       onClick: () => dispatch(remove2(flow))
-    }, "Delete"), /* @__PURE__ */ React38.createElement(MarkButton, {
+    }, "Delete"), /* @__PURE__ */ React35.createElement(MarkButton, {
       flow
-    })), /* @__PURE__ */ React38.createElement("div", {
+    })), /* @__PURE__ */ React35.createElement("div", {
       className: "menu-legend"
-    }, "Flow Modification"))), /* @__PURE__ */ React38.createElement("div", {
+    }, "Flow Modification"))), /* @__PURE__ */ React35.createElement("div", {
       className: "menu-group"
-    }, /* @__PURE__ */ React38.createElement("div", {
+    }, /* @__PURE__ */ React35.createElement("div", {
       className: "menu-content"
-    }, /* @__PURE__ */ React38.createElement(DownloadButton, {
+    }, /* @__PURE__ */ React35.createElement(DownloadButton, {
       flow
-    }), /* @__PURE__ */ React38.createElement(ExportButton, {
+    }), /* @__PURE__ */ React35.createElement(ExportButton, {
       flow
-    })), /* @__PURE__ */ React38.createElement("div", {
+    })), /* @__PURE__ */ React35.createElement("div", {
       className: "menu-legend"
-    }, "Export")), /* @__PURE__ */ React38.createElement(HideInStatic, null, /* @__PURE__ */ React38.createElement("div", {
+    }, "Export")), /* @__PURE__ */ React35.createElement(HideInStatic, null, /* @__PURE__ */ React35.createElement("div", {
       className: "menu-group"
-    }, /* @__PURE__ */ React38.createElement("div", {
+    }, /* @__PURE__ */ React35.createElement("div", {
       className: "menu-content"
-    }, /* @__PURE__ */ React38.createElement(Button, {
+    }, /* @__PURE__ */ React35.createElement(Button, {
       disabled: !flow || !flow.intercepted,
       title: "[a]ccept intercepted flow",
       icon: "fa-play text-success",
       onClick: () => dispatch(resume(flow))
-    }, "Resume"), /* @__PURE__ */ React38.createElement(Button, {
+    }, "Resume"), /* @__PURE__ */ React35.createElement(Button, {
       disabled: !flow || !flow.intercepted,
       title: "kill intercepted flow [x]",
       icon: "fa-times text-danger",
       onClick: () => dispatch(kill(flow))
-    }, "Abort")), /* @__PURE__ */ React38.createElement("div", {
+    }, "Abort")), /* @__PURE__ */ React35.createElement("div", {
       className: "menu-legend"
     }, "Interception"))));
   }
@@ -48126,13 +47975,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   function DownloadButton({ flow }) {
     var _a;
     if (flow.type !== "http")
-      return /* @__PURE__ */ React38.createElement(Button, {
+      return /* @__PURE__ */ React35.createElement(Button, {
         icon: "fa-download",
         onClick: () => 0,
         disabled: true
       }, "Download");
     if (flow.request.contentLength && !((_a = flow.response) == null ? void 0 : _a.contentLength)) {
-      return /* @__PURE__ */ React38.createElement(Button, {
+      return /* @__PURE__ */ React35.createElement(Button, {
         icon: "fa-download",
         onClick: () => openInNewTab(MessageUtils.getContentURL(flow, flow.request))
       }, "Download");
@@ -48140,21 +47989,21 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     if (flow.response) {
       const response = flow.response;
       if (!flow.request.contentLength && flow.response.contentLength) {
-        return /* @__PURE__ */ React38.createElement(Button, {
+        return /* @__PURE__ */ React35.createElement(Button, {
           icon: "fa-download",
           onClick: () => openInNewTab(MessageUtils.getContentURL(flow, response))
         }, "Download");
       }
       if (flow.request.contentLength && flow.response.contentLength) {
-        return /* @__PURE__ */ React38.createElement(Dropdown_default, {
-          text: /* @__PURE__ */ React38.createElement(Button, {
+        return /* @__PURE__ */ React35.createElement(Dropdown_default, {
+          text: /* @__PURE__ */ React35.createElement(Button, {
             icon: "fa-download",
             onClick: () => 1
           }, "Download\u25BE"),
           options: { "placement": "bottom-start" }
-        }, /* @__PURE__ */ React38.createElement(MenuItem, {
+        }, /* @__PURE__ */ React35.createElement(MenuItem, {
           onClick: () => openInNewTab(MessageUtils.getContentURL(flow, flow.request))
-        }, "Download request"), /* @__PURE__ */ React38.createElement(MenuItem, {
+        }, "Download request"), /* @__PURE__ */ React35.createElement(MenuItem, {
           onClick: () => openInNewTab(MessageUtils.getContentURL(flow, response))
         }, "Download response"));
       }
@@ -48163,24 +48012,24 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
   __name(DownloadButton, "DownloadButton");
   function ExportButton({ flow }) {
-    return /* @__PURE__ */ React38.createElement(Dropdown_default, {
+    return /* @__PURE__ */ React35.createElement(Dropdown_default, {
       className: "",
-      text: /* @__PURE__ */ React38.createElement(Button, {
+      text: /* @__PURE__ */ React35.createElement(Button, {
         title: "Export flow.",
         icon: "fa-clone",
         onClick: () => 1,
         disabled: flow.type === "tcp"
       }, "Export\u25BE"),
       options: { "placement": "bottom-start" }
-    }, /* @__PURE__ */ React38.createElement(MenuItem, {
+    }, /* @__PURE__ */ React35.createElement(MenuItem, {
       onClick: () => copy(flow, "raw_request")
-    }, "Copy raw request"), /* @__PURE__ */ React38.createElement(MenuItem, {
+    }, "Copy raw request"), /* @__PURE__ */ React35.createElement(MenuItem, {
       onClick: () => copy(flow, "raw_response")
-    }, "Copy raw response"), /* @__PURE__ */ React38.createElement(MenuItem, {
+    }, "Copy raw response"), /* @__PURE__ */ React35.createElement(MenuItem, {
       onClick: () => copy(flow, "raw")
-    }, "Copy raw request and response"), /* @__PURE__ */ React38.createElement(MenuItem, {
+    }, "Copy raw request and response"), /* @__PURE__ */ React35.createElement(MenuItem, {
       onClick: () => copy(flow, "curl")
-    }, "Copy as cURL"), /* @__PURE__ */ React38.createElement(MenuItem, {
+    }, "Copy as cURL"), /* @__PURE__ */ React35.createElement(MenuItem, {
       onClick: () => copy(flow, "httpie")
     }, "Copy as HTTPie"));
   }
@@ -48196,27 +48045,59 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
   function MarkButton({ flow }) {
     const dispatch = useAppDispatch();
-    return /* @__PURE__ */ React38.createElement(Dropdown_default, {
+    return /* @__PURE__ */ React35.createElement(Dropdown_default, {
       className: "",
-      text: /* @__PURE__ */ React38.createElement(Button, {
+      text: /* @__PURE__ */ React35.createElement(Button, {
         title: "mark flow",
         icon: "fa-paint-brush text-success",
         onClick: () => 1
       }, "Mark\u25BE"),
       options: { "placement": "bottom-start" }
-    }, /* @__PURE__ */ React38.createElement(MenuItem, {
+    }, /* @__PURE__ */ React35.createElement(MenuItem, {
       onClick: () => dispatch(update2(flow, { marked: "" }))
-    }, "\u26AA (no marker)"), Object.entries(markers).map(([name, sym]) => /* @__PURE__ */ React38.createElement(MenuItem, {
+    }, "\u26AA (no marker)"), Object.entries(markers).map(([name, sym]) => /* @__PURE__ */ React35.createElement(MenuItem, {
       key: name,
       onClick: () => dispatch(update2(flow, { marked: name }))
     }, sym, " ", name.replace(/[:_]/g, " "))));
   }
   __name(MarkButton, "MarkButton");
 
+  // src/js/components/Header/ConnectionIndicator.tsx
+  var React36 = __toModule(require_react());
+  var ConnectionIndicator_default = React36.memo(/* @__PURE__ */ __name(function ConnectionIndicator() {
+    const connState = useAppSelector((state) => state.connection.state), message = useAppSelector((state) => state.connection.message);
+    switch (connState) {
+      case ConnectionState.INIT:
+        return /* @__PURE__ */ React36.createElement("span", {
+          className: "connection-indicator init"
+        }, "connecting\u2026");
+      case ConnectionState.FETCHING:
+        return /* @__PURE__ */ React36.createElement("span", {
+          className: "connection-indicator fetching"
+        }, "fetching data\u2026");
+      case ConnectionState.ESTABLISHED:
+        return /* @__PURE__ */ React36.createElement("span", {
+          className: "connection-indicator established"
+        }, "connected");
+      case ConnectionState.ERROR:
+        return /* @__PURE__ */ React36.createElement("span", {
+          className: "connection-indicator error",
+          title: message
+        }, "connection lost");
+      case ConnectionState.OFFLINE:
+        return /* @__PURE__ */ React36.createElement("span", {
+          className: "connection-indicator offline"
+        }, "offline");
+      default:
+        const exhaustiveCheck = connState;
+        throw "unknown connection state";
+    }
+  }, "ConnectionIndicator"));
+
   // src/js/components/Header.tsx
   function Header() {
     const selectedFlows = useAppSelector((state) => state.flows.selected.filter((id) => id in state.flows.byId)), [ActiveMenu, setActiveMenu] = (0, import_react23.useState)(() => StartMenu), [wasFlowSelected, setWasFlowSelected] = (0, import_react23.useState)(false);
-    let entries = [StartMenu, OptionMenu];
+    let entries = [StartMenu];
     if (selectedFlows.length > 0) {
       if (!wasFlowSelected) {
         setActiveMenu(() => FlowMenu);
@@ -48236,7 +48117,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       setActiveMenu(() => active);
     }
     __name(handleClick, "handleClick");
-    return /* @__PURE__ */ import_react23.default.createElement("header", null);
+    return /* @__PURE__ */ import_react23.default.createElement("header", null, /* @__PURE__ */ import_react23.default.createElement("nav", {
+      className: "nav-tabs nav-tabs-lg"
+    }, /* @__PURE__ */ import_react23.default.createElement(HideInStatic, null, /* @__PURE__ */ import_react23.default.createElement(ConnectionIndicator_default, null))), /* @__PURE__ */ import_react23.default.createElement("div", null, /* @__PURE__ */ import_react23.default.createElement(ActiveMenu, null)));
   }
   __name(Header, "Header");
 
@@ -49374,7 +49257,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   })(PureEventLog);
 
   // src/js/components/Footer.tsx
-  var React44 = __toModule(require_react());
+  var React42 = __toModule(require_react());
   function Footer() {
     const version = useAppSelector((state) => state.conf.version);
     let {
@@ -49395,35 +49278,35 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       server,
       ssl_insecure
     } = useAppSelector((state) => state.options);
-    return /* @__PURE__ */ React44.createElement("footer", null, mode && mode !== "regular" && /* @__PURE__ */ React44.createElement("span", {
+    return /* @__PURE__ */ React42.createElement("footer", null, mode && mode !== "regular" && /* @__PURE__ */ React42.createElement("span", {
       className: "label label-success"
-    }, mode, " mode"), intercept && /* @__PURE__ */ React44.createElement("span", {
+    }, mode, " mode"), intercept && /* @__PURE__ */ React42.createElement("span", {
       className: "label label-success"
-    }, "Intercept: ", intercept), ssl_insecure && /* @__PURE__ */ React44.createElement("span", {
+    }, "Intercept: ", intercept), ssl_insecure && /* @__PURE__ */ React42.createElement("span", {
       className: "label label-danger"
-    }, "ssl_insecure"), showhost && /* @__PURE__ */ React44.createElement("span", {
+    }, "ssl_insecure"), showhost && /* @__PURE__ */ React42.createElement("span", {
       className: "label label-success"
-    }, "showhost"), !upstream_cert && /* @__PURE__ */ React44.createElement("span", {
+    }, "showhost"), !upstream_cert && /* @__PURE__ */ React42.createElement("span", {
       className: "label label-success"
-    }, "no-upstream-cert"), !rawtcp && /* @__PURE__ */ React44.createElement("span", {
+    }, "no-upstream-cert"), !rawtcp && /* @__PURE__ */ React42.createElement("span", {
       className: "label label-success"
-    }, "no-raw-tcp"), !http2 && /* @__PURE__ */ React44.createElement("span", {
+    }, "no-raw-tcp"), !http2 && /* @__PURE__ */ React42.createElement("span", {
       className: "label label-success"
-    }, "no-http2"), !websocket && /* @__PURE__ */ React44.createElement("span", {
+    }, "no-http2"), !websocket && /* @__PURE__ */ React42.createElement("span", {
       className: "label label-success"
-    }, "no-websocket"), anticache && /* @__PURE__ */ React44.createElement("span", {
+    }, "no-websocket"), anticache && /* @__PURE__ */ React42.createElement("span", {
       className: "label label-success"
-    }, "anticache"), anticomp && /* @__PURE__ */ React44.createElement("span", {
+    }, "anticache"), anticomp && /* @__PURE__ */ React42.createElement("span", {
       className: "label label-success"
-    }, "anticomp"), stickyauth && /* @__PURE__ */ React44.createElement("span", {
+    }, "anticomp"), stickyauth && /* @__PURE__ */ React42.createElement("span", {
       className: "label label-success"
-    }, "stickyauth: ", stickyauth), stickycookie && /* @__PURE__ */ React44.createElement("span", {
+    }, "stickyauth: ", stickyauth), stickycookie && /* @__PURE__ */ React42.createElement("span", {
       className: "label label-success"
-    }, "stickycookie: ", stickycookie), stream_large_bodies && /* @__PURE__ */ React44.createElement("span", {
+    }, "stickycookie: ", stickycookie), stream_large_bodies && /* @__PURE__ */ React42.createElement("span", {
       className: "label label-success"
-    }, "stream: ", formatSize(stream_large_bodies)), /* @__PURE__ */ React44.createElement("div", {
+    }, "stream: ", formatSize(stream_large_bodies)), /* @__PURE__ */ React42.createElement("div", {
       className: "pull-right"
-    }, /* @__PURE__ */ React44.createElement(HideInStatic, null, server && /* @__PURE__ */ React44.createElement("span", {
+    }, /* @__PURE__ */ React42.createElement(HideInStatic, null, server && /* @__PURE__ */ React42.createElement("span", {
       className: "label label-primary",
       title: "HTTP Proxy Server Address"
     }, listen_host || "*", ":", listen_port))));
@@ -49431,26 +49314,26 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   __name(Footer, "Footer");
 
   // src/js/components/Modal/Modal.tsx
-  var React49 = __toModule(require_react());
+  var React47 = __toModule(require_react());
 
   // src/js/components/Modal/ModalList.tsx
-  var React48 = __toModule(require_react());
+  var React46 = __toModule(require_react());
 
   // src/js/components/Modal/ModalLayout.tsx
-  var React45 = __toModule(require_react());
+  var React43 = __toModule(require_react());
   function ModalLayout({ children }) {
-    return /* @__PURE__ */ React45.createElement("div", null, /* @__PURE__ */ React45.createElement("div", {
+    return /* @__PURE__ */ React43.createElement("div", null, /* @__PURE__ */ React43.createElement("div", {
       className: "modal-backdrop fade in"
-    }), /* @__PURE__ */ React45.createElement("div", {
+    }), /* @__PURE__ */ React43.createElement("div", {
       className: "modal modal-visible",
       id: "optionsModal",
       tabIndex: -1,
       role: "dialog",
       "aria-labelledby": "options"
-    }, /* @__PURE__ */ React45.createElement("div", {
+    }, /* @__PURE__ */ React43.createElement("div", {
       className: "modal-dialog modal-lg",
       role: "document"
-    }, /* @__PURE__ */ React45.createElement("div", {
+    }, /* @__PURE__ */ React43.createElement("div", {
       className: "modal-content"
     }, children))));
   }
@@ -49688,7 +49571,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
 
   // src/js/components/Modal/ModalList.tsx
   function OptionModal() {
-    return /* @__PURE__ */ React48.createElement(ModalLayout, null, /* @__PURE__ */ React48.createElement(OptionModal_default, null));
+    return /* @__PURE__ */ React46.createElement(ModalLayout, null, /* @__PURE__ */ React46.createElement(OptionModal_default, null));
   }
   __name(OptionModal, "OptionModal");
   var ModalList_default = [OptionModal];
@@ -49697,7 +49580,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   function PureModal() {
     const activeModal = useAppSelector((state) => state.ui.modal.activeModal);
     const ActiveModal = ModalList_default.find((m) => m.name === activeModal);
-    return activeModal && ActiveModal !== void 0 ? /* @__PURE__ */ React49.createElement(ActiveModal, null) : /* @__PURE__ */ React49.createElement("div", null);
+    return activeModal && ActiveModal !== void 0 ? /* @__PURE__ */ React47.createElement(ActiveModal, null) : /* @__PURE__ */ React47.createElement("div", null);
   }
   __name(PureModal, "PureModal");
 
@@ -49915,9 +49798,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
 ${e.error.stack}`));
   });
   document.addEventListener("DOMContentLoaded", () => {
-    (0, import_react_dom7.render)(/* @__PURE__ */ React51.createElement(Provider_default, {
+    (0, import_react_dom7.render)(/* @__PURE__ */ React49.createElement(Provider_default, {
       store
-    }, /* @__PURE__ */ React51.createElement(ProxyApp_default, null)), document.getElementById("mitmproxy"));
+    }, /* @__PURE__ */ React49.createElement(ProxyApp_default, null)), document.getElementById("mitmproxy"));
   });
 })();
 /*

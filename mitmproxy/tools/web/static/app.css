@@ -131,15 +131,12 @@ body,
   margin: 2px 2px -1px;
 }
 header {
-  padding-top: 6px;
   background-color: white;
 }
 header > div {
   display: block;
   margin: 0;
   padding: 0;
-  border-bottom: solid #a6a6a6 1px;
-  height: 95px;
   overflow: visible;
 }
 .menu-group {

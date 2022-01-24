@@ -10,23 +10,24 @@ StartMenu.title = "Start"
 
 export default function StartMenu() {
     return (
-        <div className="main-menu">
-            <div className="menu-group">
-                <div className="menu-content">
-                    <FlowFilterInput/>
-                    <HighlightInput/>
-                </div>
-                <div className="menu-legend">Find</div>
-            </div>
+        <FlowFilterInput/>
 
-            <div className="menu-group">
-                <div className="menu-content">
-                    <InterceptInput/>
-                    <ResumeAll/>
-                </div>
-                <div className="menu-legend">Intercept</div>
-            </div>
-        </div>
+    // <div className="main-menu">
+    //         <div className="menu-group">
+    //             <div className="menu-content">
+    //                 {/*<HighlightInput/>*/}
+    //             </div>
+    //             {/*<div className="menu-legend">Find</div>*/}
+    //         </div>
+    //
+    //         {/*<div className="menu-group">*/}
+    //         {/*    <div className="menu-content">*/}
+    //         {/*        <InterceptInput/>*/}
+    //         {/*        <ResumeAll/>*/}
+    //         {/*    </div>*/}
+    //         {/*    <div className="menu-legend">Intercept</div>*/}
+    //         {/*</div>*/}
+    //     </div>
     )
 }
 
