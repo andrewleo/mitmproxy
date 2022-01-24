@@ -29828,8 +29828,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             return new Context(doc, copyState(doc.mode, saved), line);
           }
         };
-        Context.prototype.save = function(copy2) {
-          var state = copy2 !== false ? copyState(this.doc.mode, this.state) : this.state;
+        Context.prototype.save = function(copy) {
+          var state = copy !== false ? copyState(this.doc.mode, this.state) : this.state;
           return this.maxLookAhead > 0 ? new SavedContext(state, this.maxLookAhead) : state;
         };
         function highlightLine(cm, line, context, forceToEnd) {
@@ -30244,23 +30244,23 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
         __name(clearEmptySpans, "clearEmptySpans");
         function removeReadOnlyRanges(doc, from, to) {
-          var markers2 = null;
+          var markers = null;
           doc.iter(from.line, to.line + 1, function(line) {
             if (line.markedSpans) {
               for (var i3 = 0; i3 < line.markedSpans.length; ++i3) {
                 var mark = line.markedSpans[i3].marker;
-                if (mark.readOnly && (!markers2 || indexOf(markers2, mark) == -1)) {
-                  (markers2 || (markers2 = [])).push(mark);
+                if (mark.readOnly && (!markers || indexOf(markers, mark) == -1)) {
+                  (markers || (markers = [])).push(mark);
                 }
               }
             }
           });
-          if (!markers2) {
+          if (!markers) {
             return null;
           }
           var parts = [{ from, to }];
-          for (var i2 = 0; i2 < markers2.length; ++i2) {
-            var mk = markers2[i2], m = mk.find(0);
+          for (var i2 = 0; i2 < markers.length; ++i2) {
+            var mk = markers[i2], m = mk.find(0);
             for (var j = 0; j < parts.length; ++j) {
               var p = parts[j];
               if (cmp(p.to, m.from) < 0 || cmp(p.from, m.to) > 0) {
@@ -31063,8 +31063,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             cm.display.input.setUneditable(lineView.gutterBackground);
             wrap.insertBefore(lineView.gutterBackground, lineView.text);
           }
-          var markers2 = lineView.line.gutterMarkers;
-          if (cm.options.lineNumbers || markers2) {
+          var markers = lineView.line.gutterMarkers;
+          if (cm.options.lineNumbers || markers) {
             var wrap$1 = ensureLineWrapped(lineView);
             var gutterWrap = lineView.gutter = elt("div", null, "CodeMirror-gutter-wrapper", "left: " + (cm.options.fixedGutter ? dims.fixedPos : -dims.gutterTotalWidth) + "px");
             gutterWrap.setAttribute("aria-hidden", "true");
@@ -31073,12 +31073,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             if (lineView.line.gutterClass) {
               gutterWrap.className += " " + lineView.line.gutterClass;
             }
-            if (cm.options.lineNumbers && (!markers2 || !markers2["CodeMirror-linenumbers"])) {
+            if (cm.options.lineNumbers && (!markers || !markers["CodeMirror-linenumbers"])) {
               lineView.lineNumber = gutterWrap.appendChild(elt("div", lineNumberFor(cm.options, lineN), "CodeMirror-linenumber CodeMirror-gutter-elt", "left: " + dims.gutterLeft["CodeMirror-linenumbers"] + "px; width: " + cm.display.lineNumInnerWidth + "px"));
             }
-            if (markers2) {
+            if (markers) {
               for (var k = 0; k < cm.display.gutterSpecs.length; ++k) {
-                var id = cm.display.gutterSpecs[k].className, found = markers2.hasOwnProperty(id) && markers2[id];
+                var id = cm.display.gutterSpecs[k].className, found = markers.hasOwnProperty(id) && markers[id];
                 if (found) {
                   gutterWrap.appendChild(elt("div", [found], "CodeMirror-gutter-elt", "left: " + dims.gutterLeft[id] + "px; width: " + dims.gutterWidth[id] + "px"));
                 }
@@ -34018,15 +34018,15 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
         __name(mergeOldSpans, "mergeOldSpans");
         function copyHistoryArray(events, newGroup, instantiateSel) {
-          var copy2 = [];
+          var copy = [];
           for (var i2 = 0; i2 < events.length; ++i2) {
             var event = events[i2];
             if (event.ranges) {
-              copy2.push(instantiateSel ? Selection.prototype.deepCopy.call(event) : event);
+              copy.push(instantiateSel ? Selection.prototype.deepCopy.call(event) : event);
               continue;
             }
             var changes = event.changes, newChanges = [];
-            copy2.push({ changes: newChanges });
+            copy.push({ changes: newChanges });
             for (var j = 0; j < changes.length; ++j) {
               var change = changes[j], m = void 0;
               newChanges.push({ from: change.from, to: change.to, text: change.text });
@@ -34042,7 +34042,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
               }
             }
           }
-          return copy2;
+          return copy;
         }
         __name(copyHistoryArray, "copyHistoryArray");
         function extendRange(range2, head, other, extend) {
@@ -34716,10 +34716,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
               var spilled = me.children.splice(me.children.length - 5, 5);
               var sibling = new BranchChunk(spilled);
               if (!me.parent) {
-                var copy2 = new BranchChunk(me.children);
-                copy2.parent = me;
-                me.children = [copy2, sibling];
-                me = copy2;
+                var copy = new BranchChunk(me.children);
+                copy.parent = me;
+                me.children = [copy, sibling];
+                me = copy;
               } else {
                 me.size -= sibling.size;
                 me.height -= sibling.height;
@@ -35059,11 +35059,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           return marker;
         }
         __name(markText, "markText");
-        var SharedTextMarker = /* @__PURE__ */ __name(function(markers2, primary) {
-          this.markers = markers2;
+        var SharedTextMarker = /* @__PURE__ */ __name(function(markers, primary) {
+          this.markers = markers;
           this.primary = primary;
-          for (var i2 = 0; i2 < markers2.length; ++i2) {
-            markers2[i2].parent = this;
+          for (var i2 = 0; i2 < markers.length; ++i2) {
+            markers[i2].parent = this;
           }
         }, "SharedTextMarker");
         SharedTextMarker.prototype.clear = function() {
@@ -35083,21 +35083,21 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         function markTextShared(doc, from, to, options, type) {
           options = copyObj(options);
           options.shared = false;
-          var markers2 = [markText(doc, from, to, options, type)], primary = markers2[0];
+          var markers = [markText(doc, from, to, options, type)], primary = markers[0];
           var widget = options.widgetNode;
           linkedDocs(doc, function(doc2) {
             if (widget) {
               options.widgetNode = widget.cloneNode(true);
             }
-            markers2.push(markText(doc2, clipPos(doc2, from), clipPos(doc2, to), options, type));
+            markers.push(markText(doc2, clipPos(doc2, from), clipPos(doc2, to), options, type));
             for (var i2 = 0; i2 < doc2.linked.length; ++i2) {
               if (doc2.linked[i2].isParent) {
                 return;
               }
             }
-            primary = lst(markers2);
+            primary = lst(markers);
           });
-          return new SharedTextMarker(markers2, primary);
+          return new SharedTextMarker(markers, primary);
         }
         __name(markTextShared, "markTextShared");
         function findSharedMarkers(doc) {
@@ -35106,9 +35106,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           });
         }
         __name(findSharedMarkers, "findSharedMarkers");
-        function copySharedMarkers(doc, markers2) {
-          for (var i2 = 0; i2 < markers2.length; i2++) {
-            var marker = markers2[i2], pos = marker.find();
+        function copySharedMarkers(doc, markers) {
+          for (var i2 = 0; i2 < markers.length; i2++) {
+            var marker = markers[i2], pos = marker.find();
             var mFrom = doc.clipPos(pos.from), mTo = doc.clipPos(pos.to);
             if (cmp(mFrom, mTo)) {
               var subMark = markText(doc, mFrom, mTo, marker.primary, marker.primary.type);
@@ -35118,9 +35118,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           }
         }
         __name(copySharedMarkers, "copySharedMarkers");
-        function detachSharedMarkers(markers2) {
+        function detachSharedMarkers(markers) {
           var loop = /* @__PURE__ */ __name(function(i3) {
-            var marker = markers2[i3], linked = [marker.primary.doc];
+            var marker = markers[i3], linked = [marker.primary.doc];
             linkedDocs(marker.primary.doc, function(d) {
               return linked.push(d);
             });
@@ -35132,7 +35132,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
               }
             }
           }, "loop");
-          for (var i2 = 0; i2 < markers2.length; i2++)
+          for (var i2 = 0; i2 < markers.length; i2++)
             loop(i2);
         }
         __name(detachSharedMarkers, "detachSharedMarkers");
@@ -35412,9 +35412,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           },
           setGutterMarker: docMethodOp(function(line, gutterID, value) {
             return changeLine(this, line, "gutter", function(line2) {
-              var markers2 = line2.gutterMarkers || (line2.gutterMarkers = {});
-              markers2[gutterID] = value;
-              if (!value && isEmpty(markers2)) {
+              var markers = line2.gutterMarkers || (line2.gutterMarkers = {});
+              markers[gutterID] = value;
+              if (!value && isEmpty(markers)) {
                 line2.gutterMarkers = null;
               }
               return true;
@@ -35516,16 +35516,16 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           },
           findMarksAt: function(pos) {
             pos = clipPos(this, pos);
-            var markers2 = [], spans = getLine(this, pos.line).markedSpans;
+            var markers = [], spans = getLine(this, pos.line).markedSpans;
             if (spans) {
               for (var i2 = 0; i2 < spans.length; ++i2) {
                 var span = spans[i2];
                 if ((span.from == null || span.from <= pos.ch) && (span.to == null || span.to >= pos.ch)) {
-                  markers2.push(span.marker.parent || span.marker);
+                  markers.push(span.marker.parent || span.marker);
                 }
               }
             }
-            return markers2;
+            return markers;
           },
           findMarks: function(from, to, filter) {
             from = clipPos(this, from);
@@ -35546,18 +35546,18 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             return found;
           },
           getAllMarks: function() {
-            var markers2 = [];
+            var markers = [];
             this.iter(function(line) {
               var sps = line.markedSpans;
               if (sps) {
                 for (var i2 = 0; i2 < sps.length; ++i2) {
                   if (sps[i2].from != null) {
-                    markers2.push(sps[i2].marker);
+                    markers.push(sps[i2].marker);
                   }
                 }
               }
             });
-            return markers2;
+            return markers;
           },
           posFromIndex: function(off2) {
             var ch, lineNo2 = this.first, sepSize = this.lineSeparator().length;
@@ -35607,14 +35607,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             if (options.to != null && options.to < to) {
               to = options.to;
             }
-            var copy2 = new Doc(getLines(this, from, to), options.mode || this.modeOption, from, this.lineSep, this.direction);
+            var copy = new Doc(getLines(this, from, to), options.mode || this.modeOption, from, this.lineSep, this.direction);
             if (options.sharedHist) {
-              copy2.history = this.history;
+              copy.history = this.history;
             }
-            (this.linked || (this.linked = [])).push({ doc: copy2, sharedHist: options.sharedHist });
-            copy2.linked = [{ doc: this, isParent: true, sharedHist: options.sharedHist }];
-            copySharedMarkers(copy2, findSharedMarkers(this));
-            return copy2;
+            (this.linked || (this.linked = [])).push({ doc: copy, sharedHist: options.sharedHist });
+            copy.linked = [{ doc: this, isParent: true, sharedHist: options.sharedHist }];
+            copySharedMarkers(copy, findSharedMarkers(this));
+            return copy;
           },
           unlinkDoc: function(other) {
             if (other instanceof CodeMirror2) {
@@ -36059,7 +36059,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
         __name(normalizeKeyName, "normalizeKeyName");
         function normalizeKeyMap(keymap) {
-          var copy2 = {};
+          var copy = {};
           for (var keyname in keymap) {
             if (keymap.hasOwnProperty(keyname)) {
               var value = keymap[keyname];
@@ -36080,9 +36080,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
                   name = keys.slice(0, i2 + 1).join(" ");
                   val = "...";
                 }
-                var prev = copy2[name];
+                var prev = copy[name];
                 if (!prev) {
-                  copy2[name] = val;
+                  copy[name] = val;
                 } else if (prev != val) {
                   throw new Error("Inconsistent bindings for " + name);
                 }
@@ -36090,8 +36090,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
               delete keymap[keyname];
             }
           }
-          for (var prop2 in copy2) {
-            keymap[prop2] = copy2[prop2];
+          for (var prop2 in copy) {
+            keymap[prop2] = copy[prop2];
           }
           return keymap;
         }
@@ -47883,209 +47883,48 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   __name(FlowFilterInput, "FlowFilterInput");
 
   // src/js/components/Header/FlowMenu.tsx
-  var React35 = __toModule(require_react());
-
-  // src/js/components/common/HideInStatic.tsx
   var React34 = __toModule(require_react());
-  function HideInStatic({ children }) {
-    return window.MITMWEB_CONF && window.MITMWEB_CONF.static ? null : /* @__PURE__ */ React34.createElement(React34.Fragment, null, children);
+  StartMenu2.title = "Start";
+  function StartMenu2() {
+    return /* @__PURE__ */ React34.createElement(FlowFilterInput2, null);
   }
-  __name(HideInStatic, "HideInStatic");
-
-  // src/js/flow/export.ts
-  var copy = /* @__PURE__ */ __name((flow, format2) => __async(void 0, null, function* () {
-    let ret = yield runCommand("export", format2, `@${flow.id}`);
-    if (ret.value) {
-      yield navigator.clipboard.writeText(ret.value);
-    } else if (ret.error) {
-      alert(ret.error);
-    } else {
-      console.error(ret);
-    }
-  }), "copy");
-
-  // src/js/components/Header/FlowMenu.tsx
-  FlowMenu.title = "Flow";
-  function FlowMenu() {
-    const dispatch = useAppDispatch(), flow = useAppSelector((state) => state.flows.byId[state.flows.selected[0]]);
-    if (!flow)
-      return /* @__PURE__ */ React35.createElement("div", null);
-    return /* @__PURE__ */ React35.createElement("div", {
-      className: "flow-menu"
-    }, /* @__PURE__ */ React35.createElement(HideInStatic, null, /* @__PURE__ */ React35.createElement("div", {
-      className: "menu-group"
-    }, /* @__PURE__ */ React35.createElement("div", {
-      className: "menu-content"
-    }, /* @__PURE__ */ React35.createElement(Button, {
-      title: "[r]eplay flow",
-      icon: "fa-repeat text-primary",
-      onClick: () => dispatch(replay(flow)),
-      disabled: !canReplay(flow)
-    }, "Replay"), /* @__PURE__ */ React35.createElement(Button, {
-      title: "[D]uplicate flow",
-      icon: "fa-copy text-info",
-      onClick: () => dispatch(duplicate(flow))
-    }, "Duplicate"), /* @__PURE__ */ React35.createElement(Button, {
-      disabled: !flow || !flow.modified,
-      title: "revert changes to flow [V]",
-      icon: "fa-history text-warning",
-      onClick: () => dispatch(revert(flow))
-    }, "Revert"), /* @__PURE__ */ React35.createElement(Button, {
-      title: "[d]elete flow",
-      icon: "fa-trash text-danger",
-      onClick: () => dispatch(remove2(flow))
-    }, "Delete"), /* @__PURE__ */ React35.createElement(MarkButton, {
-      flow
-    })), /* @__PURE__ */ React35.createElement("div", {
-      className: "menu-legend"
-    }, "Flow Modification"))), /* @__PURE__ */ React35.createElement("div", {
-      className: "menu-group"
-    }, /* @__PURE__ */ React35.createElement("div", {
-      className: "menu-content"
-    }, /* @__PURE__ */ React35.createElement(DownloadButton, {
-      flow
-    }), /* @__PURE__ */ React35.createElement(ExportButton, {
-      flow
-    })), /* @__PURE__ */ React35.createElement("div", {
-      className: "menu-legend"
-    }, "Export")), /* @__PURE__ */ React35.createElement(HideInStatic, null, /* @__PURE__ */ React35.createElement("div", {
-      className: "menu-group"
-    }, /* @__PURE__ */ React35.createElement("div", {
-      className: "menu-content"
-    }, /* @__PURE__ */ React35.createElement(Button, {
-      disabled: !flow || !flow.intercepted,
-      title: "[a]ccept intercepted flow",
-      icon: "fa-play text-success",
-      onClick: () => dispatch(resume(flow))
-    }, "Resume"), /* @__PURE__ */ React35.createElement(Button, {
-      disabled: !flow || !flow.intercepted,
-      title: "kill intercepted flow [x]",
-      icon: "fa-times text-danger",
-      onClick: () => dispatch(kill(flow))
-    }, "Abort")), /* @__PURE__ */ React35.createElement("div", {
-      className: "menu-legend"
-    }, "Interception"))));
+  __name(StartMenu2, "StartMenu");
+  function FlowFilterInput2() {
+    const dispatch = useAppDispatch(), value = useAppSelector((state) => state.flows.filter);
+    return /* @__PURE__ */ React34.createElement(FilterInput, {
+      value: value || "",
+      placeholder: "Search",
+      type: "search",
+      color: "black",
+      onChange: (value2) => dispatch(setFilter2(value2))
+    });
   }
-  __name(FlowMenu, "FlowMenu");
-  var openInNewTab = /* @__PURE__ */ __name((url) => {
-    const newWindow = window.open(url, "_blank", "noopener,noreferrer");
-    if (newWindow)
-      newWindow.opener = null;
-  }, "openInNewTab");
-  function DownloadButton({ flow }) {
-    var _a;
-    if (flow.type !== "http")
-      return /* @__PURE__ */ React35.createElement(Button, {
-        icon: "fa-download",
-        onClick: () => 0,
-        disabled: true
-      }, "Download");
-    if (flow.request.contentLength && !((_a = flow.response) == null ? void 0 : _a.contentLength)) {
-      return /* @__PURE__ */ React35.createElement(Button, {
-        icon: "fa-download",
-        onClick: () => openInNewTab(MessageUtils.getContentURL(flow, flow.request))
-      }, "Download");
-    }
-    if (flow.response) {
-      const response = flow.response;
-      if (!flow.request.contentLength && flow.response.contentLength) {
-        return /* @__PURE__ */ React35.createElement(Button, {
-          icon: "fa-download",
-          onClick: () => openInNewTab(MessageUtils.getContentURL(flow, response))
-        }, "Download");
-      }
-      if (flow.request.contentLength && flow.response.contentLength) {
-        return /* @__PURE__ */ React35.createElement(Dropdown_default, {
-          text: /* @__PURE__ */ React35.createElement(Button, {
-            icon: "fa-download",
-            onClick: () => 1
-          }, "Download\u25BE"),
-          options: { "placement": "bottom-start" }
-        }, /* @__PURE__ */ React35.createElement(MenuItem, {
-          onClick: () => openInNewTab(MessageUtils.getContentURL(flow, flow.request))
-        }, "Download request"), /* @__PURE__ */ React35.createElement(MenuItem, {
-          onClick: () => openInNewTab(MessageUtils.getContentURL(flow, response))
-        }, "Download response"));
-      }
-    }
-    return null;
-  }
-  __name(DownloadButton, "DownloadButton");
-  function ExportButton({ flow }) {
-    return /* @__PURE__ */ React35.createElement(Dropdown_default, {
-      className: "",
-      text: /* @__PURE__ */ React35.createElement(Button, {
-        title: "Export flow.",
-        icon: "fa-clone",
-        onClick: () => 1,
-        disabled: flow.type === "tcp"
-      }, "Export\u25BE"),
-      options: { "placement": "bottom-start" }
-    }, /* @__PURE__ */ React35.createElement(MenuItem, {
-      onClick: () => copy(flow, "raw_request")
-    }, "Copy raw request"), /* @__PURE__ */ React35.createElement(MenuItem, {
-      onClick: () => copy(flow, "raw_response")
-    }, "Copy raw response"), /* @__PURE__ */ React35.createElement(MenuItem, {
-      onClick: () => copy(flow, "raw")
-    }, "Copy raw request and response"), /* @__PURE__ */ React35.createElement(MenuItem, {
-      onClick: () => copy(flow, "curl")
-    }, "Copy as cURL"), /* @__PURE__ */ React35.createElement(MenuItem, {
-      onClick: () => copy(flow, "httpie")
-    }, "Copy as HTTPie"));
-  }
-  __name(ExportButton, "ExportButton");
-  var markers = {
-    ":red_circle:": "\u{1F534}",
-    ":orange_circle:": "\u{1F7E0}",
-    ":yellow_circle:": "\u{1F7E1}",
-    ":green_circle:": "\u{1F7E2}",
-    ":large_blue_circle:": "\u{1F535}",
-    ":purple_circle:": "\u{1F7E3}",
-    ":brown_circle:": "\u{1F7E4}"
-  };
-  function MarkButton({ flow }) {
-    const dispatch = useAppDispatch();
-    return /* @__PURE__ */ React35.createElement(Dropdown_default, {
-      className: "",
-      text: /* @__PURE__ */ React35.createElement(Button, {
-        title: "mark flow",
-        icon: "fa-paint-brush text-success",
-        onClick: () => 1
-      }, "Mark\u25BE"),
-      options: { "placement": "bottom-start" }
-    }, /* @__PURE__ */ React35.createElement(MenuItem, {
-      onClick: () => dispatch(update2(flow, { marked: "" }))
-    }, "\u26AA (no marker)"), Object.entries(markers).map(([name, sym]) => /* @__PURE__ */ React35.createElement(MenuItem, {
-      key: name,
-      onClick: () => dispatch(update2(flow, { marked: name }))
-    }, sym, " ", name.replace(/[:_]/g, " "))));
-  }
-  __name(MarkButton, "MarkButton");
+  __name(FlowFilterInput2, "FlowFilterInput");
 
   // src/js/components/Header/ConnectionIndicator.tsx
-  var React36 = __toModule(require_react());
-  var ConnectionIndicator_default = React36.memo(/* @__PURE__ */ __name(function ConnectionIndicator() {
+  var React35 = __toModule(require_react());
+  var ConnectionIndicator_default = React35.memo(/* @__PURE__ */ __name(function ConnectionIndicator() {
     const connState = useAppSelector((state) => state.connection.state), message = useAppSelector((state) => state.connection.message);
     switch (connState) {
       case ConnectionState.INIT:
-        return /* @__PURE__ */ React36.createElement("span", {
+        return /* @__PURE__ */ React35.createElement("span", {
           className: "connection-indicator init"
         }, "connecting\u2026");
       case ConnectionState.FETCHING:
-        return /* @__PURE__ */ React36.createElement("span", {
+        return /* @__PURE__ */ React35.createElement("span", {
           className: "connection-indicator fetching"
         }, "fetching data\u2026");
       case ConnectionState.ESTABLISHED:
-        return /* @__PURE__ */ React36.createElement("span", {
+        return /* @__PURE__ */ React35.createElement("span", {
           className: "connection-indicator established"
         }, "connected");
       case ConnectionState.ERROR:
-        return /* @__PURE__ */ React36.createElement("span", {
+        return /* @__PURE__ */ React35.createElement("span", {
           className: "connection-indicator error",
           title: message
         }, "connection lost");
       case ConnectionState.OFFLINE:
-        return /* @__PURE__ */ React36.createElement("span", {
+        return /* @__PURE__ */ React35.createElement("span", {
           className: "connection-indicator offline"
         }, "offline");
       default:
@@ -48094,21 +47933,28 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }
   }, "ConnectionIndicator"));
 
+  // src/js/components/common/HideInStatic.tsx
+  var React36 = __toModule(require_react());
+  function HideInStatic({ children }) {
+    return window.MITMWEB_CONF && window.MITMWEB_CONF.static ? null : /* @__PURE__ */ React36.createElement(React36.Fragment, null, children);
+  }
+  __name(HideInStatic, "HideInStatic");
+
   // src/js/components/Header.tsx
   function Header() {
     const selectedFlows = useAppSelector((state) => state.flows.selected.filter((id) => id in state.flows.byId)), [ActiveMenu, setActiveMenu] = (0, import_react23.useState)(() => StartMenu), [wasFlowSelected, setWasFlowSelected] = (0, import_react23.useState)(false);
     let entries = [StartMenu];
     if (selectedFlows.length > 0) {
       if (!wasFlowSelected) {
-        setActiveMenu(() => FlowMenu);
+        setActiveMenu(() => StartMenu2);
         setWasFlowSelected(true);
       }
-      entries.push(FlowMenu);
+      entries.push(StartMenu2);
     } else {
       if (wasFlowSelected) {
         setWasFlowSelected(false);
       }
-      if (ActiveMenu === FlowMenu) {
+      if (ActiveMenu === StartMenu2) {
         setActiveMenu(() => StartMenu);
       }
     }
