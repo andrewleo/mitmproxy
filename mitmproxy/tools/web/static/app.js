@@ -49124,38 +49124,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       server,
       ssl_insecure
     } = useAppSelector((state) => state.options);
-    return /* @__PURE__ */ React42.createElement("footer", null, mode && mode !== "regular" && /* @__PURE__ */ React42.createElement("span", {
-      className: "label label-success"
-    }, mode, " mode"), intercept && /* @__PURE__ */ React42.createElement("span", {
-      className: "label label-success"
-    }, "Intercept: ", intercept), ssl_insecure && /* @__PURE__ */ React42.createElement("span", {
-      className: "label label-danger"
-    }, "ssl_insecure"), showhost && /* @__PURE__ */ React42.createElement("span", {
-      className: "label label-success"
-    }, "showhost"), !upstream_cert && /* @__PURE__ */ React42.createElement("span", {
-      className: "label label-success"
-    }, "no-upstream-cert"), !rawtcp && /* @__PURE__ */ React42.createElement("span", {
-      className: "label label-success"
-    }, "no-raw-tcp"), !http2 && /* @__PURE__ */ React42.createElement("span", {
-      className: "label label-success"
-    }, "no-http2"), !websocket && /* @__PURE__ */ React42.createElement("span", {
-      className: "label label-success"
-    }, "no-websocket"), anticache && /* @__PURE__ */ React42.createElement("span", {
-      className: "label label-success"
-    }, "anticache"), anticomp && /* @__PURE__ */ React42.createElement("span", {
-      className: "label label-success"
-    }, "anticomp"), stickyauth && /* @__PURE__ */ React42.createElement("span", {
-      className: "label label-success"
-    }, "stickyauth: ", stickyauth), stickycookie && /* @__PURE__ */ React42.createElement("span", {
-      className: "label label-success"
-    }, "stickycookie: ", stickycookie), stream_large_bodies && /* @__PURE__ */ React42.createElement("span", {
-      className: "label label-success"
-    }, "stream: ", formatSize(stream_large_bodies)), /* @__PURE__ */ React42.createElement("div", {
-      className: "pull-right"
-    }, /* @__PURE__ */ React42.createElement(HideInStatic, null, server && /* @__PURE__ */ React42.createElement("span", {
-      className: "label label-primary",
-      title: "HTTP Proxy Server Address"
-    }, listen_host || "*", ":", listen_port))));
+    return /* @__PURE__ */ React42.createElement("footer", null);
   }
   __name(Footer, "Footer");
 
