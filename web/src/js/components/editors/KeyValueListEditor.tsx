@@ -21,8 +21,7 @@ class Row extends Component<RowProps> {
 
     render = () => {
         const [key, value] = this.props.item;
-
-        return <div ref={this.container} className="kv-row" onClick={this.onClick} onKeyDownCapture={this.onKeyDown}>
+        const header = <div ref={this.container} className={key === "rqb" || key === "rsb" ? "kv-row-hidden" : "kv-row"} onClick={this.onClick} onKeyDownCapture={this.onKeyDown}>
             <ValueEditor
                 ref={this.nameInput}
                 className="kv-key"
@@ -39,7 +38,9 @@ class Row extends Component<RowProps> {
                 onEditDone={newVal => this.props.onEditDone([key, newVal])}
                 placeholder="empty"
             />
-        </div>
+        </div>;
+        // const ret = (key === "rqb" || key === "rsb") ? header : null;
+        return header;
     }
 
     onClick = (e: React.MouseEvent) => {
@@ -98,7 +99,7 @@ export default class KeyValueListEditor extends Component<KeyValueListProps, Key
                 ref={e => this.rowRefs[row] = e}
             />;
         })
-        
+
         return <div className={classnames('kv-editor', this.props.className)} onMouseDown={this.onMouseDown}>
             {rows}
             {/*<div onClick={(e) => {*/}
