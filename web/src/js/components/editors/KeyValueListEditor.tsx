@@ -98,20 +98,18 @@ export default class KeyValueListEditor extends Component<KeyValueListProps, Key
                 ref={e => this.rowRefs[row] = e}
             />;
         })
-
-        return null
-        // 移除添加行
-        // return <div className={classnames('kv-editor', this.props.className)} onMouseDown={this.onMouseDown}>
-        //     {rows}
-        //     <div onClick={(e) => {
-        //         e.preventDefault();
-        //         this.onClickEmptyArea(this.state.currentList.length - 1)
-        //     }}
-        //          className="kv-add-row fa fa-plus-square-o"
-        //          role="button"
-        //          aria-label="Add"
-        //     />
-        // </div>
+        
+        return <div className={classnames('kv-editor', this.props.className)} onMouseDown={this.onMouseDown}>
+            {rows}
+            {/*<div onClick={(e) => {*/}
+            {/*    e.preventDefault();*/}
+            {/*    this.onClickEmptyArea(this.state.currentList.length - 1)*/}
+            {/*}}*/}
+            {/*     // className="kv-add-row fa fa-plus-square-o"*/}
+            {/*     // role="button"*/}
+            {/*     // aria-label="Add"*/}
+            {/*/>*/}
+        </div>
     }
 
     onEditDone = (row: number, newItem: Item) => {
