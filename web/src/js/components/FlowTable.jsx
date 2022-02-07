@@ -20,7 +20,7 @@ class FlowTable extends React.Component {
     }
 
     static defaultProps = {
-        rowHeight: 32,
+        rowHeight: 20,
     }
 
     constructor(props, context) {
