@@ -123,23 +123,23 @@ export default class FilterInput extends Component<FilterInputProps, FilterInput
                     type="text"
                     ref="input"
                     placeholder={placeholder}
-                    className="form-control"
+                    className="form-control input-filter-third"
                     value={value}
                     onChange={this.onChange}
                     onFocus={this.onFocus}
                     onBlur={this.onBlur}
                     onKeyDown={this.onKeyDown}
                 />
-                {(focus || mousefocus) && (
-                    <div className="popover bottom"
-                         onMouseEnter={this.onMouseEnter}
-                         onMouseLeave={this.onMouseLeave}>
-                        <div className="arrow"/>
-                        <div className="popover-content">
-                            {this.getDesc()}
-                        </div>
-                    </div>
-                )}
+                {/*{(focus || mousefocus) && (*/}
+                {/*    <div className="popover bottom"*/}
+                {/*         onMouseEnter={this.onMouseEnter}*/}
+                {/*         onMouseLeave={this.onMouseLeave}>*/}
+                {/*        <div className="arrow"/>*/}
+                {/*        <div className="popover-content">*/}
+                {/*            {this.getDesc()}*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*)}*/}
             </div>
         )
     }

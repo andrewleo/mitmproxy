@@ -19,8 +19,12 @@ interface FlowColumn {
 }
 
 export const tls: FlowColumn = ({flow}) => {
+    // 去除前面的颜色区分
+    // return (
+    //     <td className={classnames('col-tls', flow.client_conn.tls_established ? 'col-tls-https' : 'col-tls-http')}/>
+    // )
     return (
-        <td className={classnames('col-tls', flow.client_conn.tls_established ? 'col-tls-https' : 'col-tls-http')}/>
+        <td className={classnames('col-tls', 'col-tls-http')}/>
     )
 }
 tls.headerName = ''
