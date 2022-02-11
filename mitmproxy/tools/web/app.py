@@ -274,7 +274,7 @@ class WebSocketEventBroadcaster(tornado.websocket.WebSocketHandler):
         for conn in cls.connections:
             try:
                 # filter domain, not show
-                is_host_match = re.search(br'pretty_host.*: .*(google.com|google.cn|qualcomm.cn)', message)
+                is_host_match = re.search(br'pretty_host.*: .*(google.com|google.cn|qualcomm.cn|rom.miui.com|ustclug.org)', message)
                 if is_host_match is None:
                     conn.write_message(message)
             except Exception:  # pragma: no cover
