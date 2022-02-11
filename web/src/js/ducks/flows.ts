@@ -7,6 +7,7 @@ import FlowColumns from "../components/FlowTable/FlowColumns";
 export const ADD = 'FLOWS_ADD'
 export const UPDATE = 'FLOWS_UPDATE'
 export const REMOVE = 'FLOWS_REMOVE'
+export const CLEAR_FLOWS = 'CLEAR_FLOWS'
 export const RECEIVE = 'FLOWS_RECEIVE'
 export const SELECT = 'FLOWS_SELECT'
 export const SET_FILTER = 'FLOWS_SET_FILTER'
@@ -81,6 +82,12 @@ export default function reducer(state: FlowsState = defaultState, action): Flows
                 ...store.reduce(state, store.setFilter(makeFilter(action.filter), makeSort(state.sort)))
             }
 
+        case CLEAR_FLOWS:
+            return {
+                ...state,
+                view: []
+            }
+
         case SET_HIGHLIGHT:
             return {
                 ...state,
@@ -132,6 +139,10 @@ export function makeSort({column, desc}: { column?: keyof typeof FlowColumns, de
 
 export function setFilter(filter: string) {
     return {type: SET_FILTER, filter}
+}
+
+export function clearFlows() {
+    return {type: CLEAR_FLOWS}
 }
 
 export function setHighlight(highlight: string) {

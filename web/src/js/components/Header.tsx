@@ -6,7 +6,8 @@ import FileMenu from './Header/FileMenu'
 import FlowMenu from './Header/FlowMenu'
 import ConnectionIndicator from "./Header/ConnectionIndicator"
 import HideInStatic from './common/HideInStatic'
-import {useAppSelector} from "../ducks";
+import { clearFlows } from "../ducks/flows"
+import {useAppSelector,useAppDispatch} from "../ducks";
 
 interface Menu {
     (): JSX.Element;
@@ -40,6 +41,11 @@ export default function Header() {
         setActiveMenu(() => active)
     }
 
+    function handleClearFlows(){
+        const dispatch = useAppDispatch()
+        dispatch(clearFlows())
+    }
+
     return (
         <header>
             <nav className="nav-tabs nav-tabs-lg">
@@ -54,6 +60,7 @@ export default function Header() {
                 {/*))}*/}
                 <HideInStatic>
                     <ConnectionIndicator/>
+                    <span className='nav-tabs-button' onClick={e => handleClearFlows()}>Clear All <i className="fa fa-trash-o"></i></span>
                 </HideInStatic>
             </nav>
             <div>
