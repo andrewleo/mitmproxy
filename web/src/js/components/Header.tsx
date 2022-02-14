@@ -16,6 +16,7 @@ interface Menu {
 }
 
 export default function Header() {
+    const dispatch = useAppDispatch()
     const selectedFlows = useAppSelector(state => state.flows.selected.filter(id => id in state.flows.byId)),
         [ActiveMenu, setActiveMenu] = useState<Menu>(() => StartMenu),
         [wasFlowSelected, setWasFlowSelected] = useState(false);
@@ -41,11 +42,6 @@ export default function Header() {
         setActiveMenu(() => active)
     }
 
-    function handleClearFlows(){
-        const dispatch = useAppDispatch()
-        dispatch(clearFlows())
-    }
-
     return (
         <header>
             <nav className="nav-tabs nav-tabs-lg">
@@ -60,7 +56,7 @@ export default function Header() {
                 {/*))}*/}
                 <HideInStatic>
                     <ConnectionIndicator/>
-                    <span className='nav-tabs-button' onClick={e => handleClearFlows()}>Clear All <i className="fa fa-trash-o"></i></span>
+                    <span className='nav-tabs-button' onClick={() => dispatch(clearFlows())}>Clear All <i className="fa fa-trash-o"></i></span>
                 </HideInStatic>
             </nav>
             <div>
