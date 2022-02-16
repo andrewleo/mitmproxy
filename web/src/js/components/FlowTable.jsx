@@ -26,7 +26,10 @@ class FlowTable extends React.Component {
     constructor(props, context) {
         super(props, context)
 
-        this.state = { vScroll: calcVScroll() }
+        this.state = { 
+            vScroll: calcVScroll(),
+            isUpdate: false
+        }
         this.onViewportUpdate = this.onViewportUpdate.bind(this)
     }
 
@@ -102,7 +105,7 @@ class FlowTable extends React.Component {
                     </thead>
                     <tbody>
                         <tr style={{ height: vScroll.paddingTop }}/>
-                        {flows.slice(vScroll.start, vScroll.end).map(flow => (
+                        {flows.length&&flows.slice(vScroll.start, vScroll.end).map(flow => (
                             <FlowRow
                                 key={flow.id}
                                 flow={flow}
