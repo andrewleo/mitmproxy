@@ -42,10 +42,6 @@ export default function Header() {
         setActiveMenu(() => active)
     }
 
-    function clearFlowsClick() {
-        dispatch(clearFlows())
-    }
-
     return (
         <header>
             <nav className="nav-tabs nav-tabs-lg">
@@ -60,7 +56,7 @@ export default function Header() {
                 {/*))}*/}
                 <HideInStatic>
                     <ConnectionIndicator/>
-                    <span className='nav-tabs-button' onClick={() => clearFlowsClick.bind(this)}>Clear All <i className="fa fa-trash-o"></i></span>
+                    <span className='nav-tabs-button' onClick={() => dispatch(clearFlows())}>Clear All <i className="fa fa-trash-o"></i></span>
                 </HideInStatic>
             </nav>
             <div>
