@@ -85,7 +85,8 @@ export default function reducer(state: FlowsState = defaultState, action): Flows
         case CLEAR_FLOWS:
             return {
                 ...state,
-                view: []
+                view: [],
+                selected:[]
             }
 
         case SET_HIGHLIGHT:
