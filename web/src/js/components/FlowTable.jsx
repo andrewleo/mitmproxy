@@ -106,7 +106,7 @@ class FlowTable extends React.Component {
                     <tbody>
                         <tr style={{ height: vScroll.paddingTop }}/>
                         {flows.length&&flows.slice(vScroll.start, vScroll.end).map(flow => (
-                            flow.id&&
+                            flow &&
                             <FlowRow
                                 key={flow.id}
                                 flow={flow}
