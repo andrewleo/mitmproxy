@@ -48,7 +48,7 @@ function FlowFilterInput() {
         value = useAppSelector(state => state.flows.filter)
     return <FilterInput
         value={value || ""}
-        placeholder="Search"
+        placeholder="~h xxx：filter string within request header and body, response header and body"
         type="search"
         color='black'
         onChange={value => dispatch(setFilter(value))}

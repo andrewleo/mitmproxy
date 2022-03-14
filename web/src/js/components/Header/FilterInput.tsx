@@ -122,7 +122,7 @@ export default class FilterInput extends Component<FilterInputProps, FilterInput
                 <input
                     type="text"
                     ref="input"
-                    placeholder={placeholder}
+                    placeholder="~h xxx：filter string within request header/body and response header/body."
                     className="form-control input-filter-third"
                     value={value}
                     onChange={this.onChange}
