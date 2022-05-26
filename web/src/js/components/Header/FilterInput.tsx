@@ -38,7 +38,7 @@ export default class FilterInput extends Component<FilterInputProps, FilterInput
     }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
-        this.setState({value: nextProps.value})
+        this.setState({value: this.value})
     }
 
     isValid(filt) {
