@@ -56,7 +56,7 @@ export default function Header() {
                 {/*))}*/}
                 <HideInStatic>
                     <ConnectionIndicator/>
-                    <span className='nav-tabs-button' onClick={() => dispatch(clearFlows())}>Clear All <i className="fa fa-trash-o"></i></span>
+                    {/* <span className='nav-tabs-button' onClick={() => dispatch(clearFlows())}>Clear All <i className="fa fa-trash-o"></i></span> */}
                 </HideInStatic>
             </nav>
             <div>
