@@ -95,7 +95,31 @@ class FlowTable extends React.Component {
     render() {
         const { vScroll, viewportTop } = this.state
         const { flows, selected, highlight } = this.props
-        const isHighlighted = highlight ? Filt.parse(highlight) : () => false
+        let isHighlighted = () => false
+        if (highlight) {
+            try {
+                isHighlighted = Filt.parse(highlight)
+            } catch (e) {
+                isHighlighted = () => false
+            }
+        }
+
+        const safeStart = (vScroll && typeof vScroll.start === 'number' && !isNaN(vScroll.start)) 
+            ? Math.max(0, Math.floor(vScroll.start)) 
+            : 0
+        const safeEnd = (vScroll && typeof vScroll.end === 'number' && !isNaN(vScroll.end)) 
+            ? Math.max(safeStart, Math.floor(vScroll.end)) 
+            : 0
+        const safePaddingTop = (vScroll && typeof vScroll.paddingTop === 'number' && !isNaN(vScroll.paddingTop)) 
+            ? vScroll.paddingTop 
+            : 0
+        const safePaddingBottom = (vScroll && typeof vScroll.paddingBottom === 'number' && !isNaN(vScroll.paddingBottom)) 
+            ? vScroll.paddingBottom 
+            : 0
+
+        const flowsToRender = (Array.isArray(flows) && flows.length > 0)
+            ? flows.slice(safeStart, safeEnd).filter(flow => flow && flow.id)
+            : []
 
         return (
             <div className="flow-table" onScroll={this.onViewportUpdate}>
@@ -104,17 +128,26 @@ class FlowTable extends React.Component {
                         <FlowTableHead />
                     </thead>
                     <tbody>
-                        <tr style={{ height: vScroll.paddingTop }}/>
-                        {flows && flows.length&&flows.slice(vScroll.start, vScroll.end).map(flow => (
-                            flow &&
-                            <FlowRow
-                                key={flow.id}
-                                flow={flow}
-                                selected={flow === selected}
-                                highlighted={isHighlighted(flow)}
-                            />
-                        ))}
-                        <tr style={{ height: vScroll.paddingBottom }}/>
+                        <tr style={{ height: safePaddingTop }}/>
+                        {flowsToRender.map(flow => {
+                            if (!flow || !flow.id) {
+                                return null
+                            }
+                            try {
+                                return (
+                                    <FlowRow
+                                        key={flow.id}
+                                        flow={flow}
+                                        selected={flow === selected}
+                                        highlighted={isHighlighted(flow)}
+                                    />
+                                )
+                            } catch (e) {
+                                console.error('Error rendering FlowRow:', e, flow)
+                                return null
+                            }
+                        })}
+                        <tr style={{ height: safePaddingBottom }}/>
                     </tbody>
                 </table>
             </div>

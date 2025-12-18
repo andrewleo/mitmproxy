@@ -35,10 +35,13 @@ export default class FilterInput extends Component<FilterInputProps, FilterInput
         this.onMouseEnter = this.onMouseEnter.bind(this)
         this.onMouseLeave = this.onMouseLeave.bind(this)
         this.selectFilter = this.selectFilter.bind(this)
+        this.onClear = this.onClear.bind(this)
     }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
-        this.setState({value: this.value})
+        if (nextProps.value !== this.props.value && !this.state.focus) {
+            this.setState({value: nextProps.value})
+        }
     }
 
     isValid(filt) {
@@ -111,6 +114,12 @@ export default class FilterInput extends Component<FilterInputProps, FilterInput
         ReactDOM.findDOMNode(this.refs.input).select()
     }
 
+    onClear() {
+        this.setState({value: ''})
+        this.props.onChange('')
+        ReactDOM.findDOMNode(this.refs.input).focus()
+    }
+
     render() {
         const {type, color, placeholder} = this.props
         const {value, focus, mousefocus} = this.state
@@ -130,6 +139,17 @@ export default class FilterInput extends Component<FilterInputProps, FilterInput
                     onBlur={this.onBlur}
                     onKeyDown={this.onKeyDown}
                 />
+                {value && (
+                    <span 
+                        className="input-group-addon" 
+                        style={{cursor: 'pointer'}} 
+                        onClick={this.onClear}
+                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f5f5f5'}
+                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = ''}
+                    >
+                        <i className="fa fa-fw fa-times" style={{color: '#999'}}/>
+                    </span>
+                )}
                 {/*{(focus || mousefocus) && (*/}
                 {/*    <div className="popover bottom"*/}
                 {/*         onMouseEnter={this.onMouseEnter}*/}

@@ -12,6 +12,10 @@ type FlowRowProps = {
 }
 
 export default React.memo(function FlowRow({flow, selected, highlighted}: FlowRowProps) {
+    if (!flow || !flow.id) {
+        return null
+    }
+
     const dispatch = useAppDispatch(),
         displayColumnNames = useAppSelector(state => state.options.web_columns),
         className = classnames({
@@ -24,14 +28,17 @@ export default React.memo(function FlowRow({flow, selected, highlighted}: FlowRo
 
     const onClick = useCallback(e => {
         // a bit of a hack to disable row selection for quickactions.
+        if (!flow || !flow.id) {
+            return
+        }
         let node = e.target;
-        while (node.parentNode) {
-            if (node.classList.contains("col-quickactions"))
+        while (node && node.parentNode) {
+            if (node.classList && node.classList.contains("col-quickactions"))
                 return
             node = node.parentNode;
         }
         dispatch(select(flow.id));
-    }, [flow]);
+    }, [flow, dispatch]);
 
     const displayColumns = displayColumnNames.map(x => columns[x]).filter(x => x).concat(columns.quickactions);
 
