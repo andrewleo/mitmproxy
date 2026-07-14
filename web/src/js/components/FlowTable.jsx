@@ -31,6 +31,7 @@ class FlowTable extends React.Component {
             isUpdate: false
         }
         this.onViewportUpdate = this.onViewportUpdate.bind(this)
+        this._isUpdating = false
     }
 
     UNSAFE_componentWillMount() {
@@ -41,8 +42,13 @@ class FlowTable extends React.Component {
         window.removeEventListener('resize', this.onViewportUpdate)
     }
 
-    componentDidUpdate() {
-        this.onViewportUpdate()
+    componentDidUpdate(prevProps) {
+        // Only update vScroll if the number of flows changed
+        if (!this._isUpdating && prevProps.flows.length !== this.props.flows.length) {
+            this._isUpdating = true
+            this.onViewportUpdate()
+            this._isUpdating = false
+        }
 
         if (!this.shouldScrollIntoView) {
             return
@@ -77,6 +83,11 @@ class FlowTable extends React.Component {
     }
 
     onViewportUpdate() {
+        // Guard against recursive calls
+        if (this._isUpdating) {
+            return
+        }
+
         const viewport = ReactDOM.findDOMNode(this)
         const viewportTop = viewport.scrollTop || 0
 
@@ -88,7 +99,10 @@ class FlowTable extends React.Component {
         })
 
         if (this.state.viewportTop !== viewportTop || !shallowEqual(this.state.vScroll, vScroll)) {
-            this.setState({ vScroll, viewportTop })
+            this._isUpdating = true
+            this.setState({ vScroll, viewportTop }, () => {
+                this._isUpdating = false
+            })
         }
     }
 
